@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}填写 - 温州市中心医院内镜中心管理系统{% endblock %}
+
+{% block content %}
+<h1>内镜中心管理系统<br><span>填写</span></h1>
+<div class="buttonsets">
+  <form method="get" id="add_overtime" action="add_overtime" hidden></form>
+  <button onclick="document.getElementById('add_overtime').submit();">填写加班</button>
+  <form method="get" id="add_compensation" action="add_compensation" hidden></form>
+  <button class="button-right" onclick="document.getElementById('add_compensation').submit();">填写补休</button>
+</div>
+{% if permission == "admin" %}
+<div class="buttonsets">
+  <form method="get" id="add_writeoff" action="add_writeoff" hidden></form>
+  <button onclick="document.getElementById('add_writeoff').submit();">填写核销</button>
+  <form method="get" id="index" action="index" hidden></form>
+  <button class="button-right" onclick="document.getElementById('index').submit();">返&emsp;&emsp;回</button>
+</div>
+{% else %}
+<div class="buttonsets">
+  <form method="get" id="index" action="index" hidden></form>
+  <button class="button-right" onclick="document.getElementById('index').submit();">返&emsp;&emsp;回</button>
+</div>
+{% endif %}
+{% endblock %}

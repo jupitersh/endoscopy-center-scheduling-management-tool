@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}批量填写 - 温州市中心医院内镜中心管理系统{% endblock %}
+
+{% block content %}
+<h1>内镜中心管理系统<br><span>批量填写</span></h1>
+<div class="buttonsets">
+  <form method="get" id="batch_overtime" action="batch_overtime" hidden></form>
+  <button onclick="document.getElementById('batch_overtime').submit();">批量加班</button>
+  <form method="get" id="batch_compensation" action="batch_compensation" hidden></form>
+  <button class="button-right" onclick="document.getElementById('batch_compensation').submit();">批量补休</button>
+</div>
+<div class="buttonsets">
+  <form method="get" id="batch_writeoff" action="batch_writeoff" hidden></form>
+  <button onclick="document.getElementById('batch_writeoff').submit();">批量核销</button>
+  <form method="get" id="index" action="index" hidden></form>
+  <button class="button-right" onclick="document.getElementById('index').submit();">返&emsp;&emsp;回</button>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}统计结果 - 温州市中心医院内镜中心管理系统{% endblock %}
+
+{% block content %}
+<h1>内镜中心管理系统<br><span>统计结果</span></h1>
+<table>
+    <thead>
+        <tr>
+            {% for item in table_title %}
+            <th>{{ item }}</th>
+            {% endfor %}
+        </tr>
+        {% for content in table_content %}
+        <tr>
+            {% for item in content %}
+            <td>{{ item }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </thead>
+</table>
+<div class="buttonsets">
+    <form method="get" id="report" action="report" hidden></form>
+    <button onclick="document.getElementById('report').submit();" class="button-right">返回</button>
+</div>
+{% endblock %}

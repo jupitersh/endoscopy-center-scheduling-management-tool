@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}登录 - 温州市中心医院内镜中心管理系统{% endblock %}
+
+{% block content %}
+<div class="body">
+  <h1>温州市中心医院<br><span>内镜中心管理系统</span></h1>
+  <form method="POST" id="login" class="main-form">
+    <input type="hidden" name="action" value="login" />
+    <div class="label">
+      <label>姓名</label>
+    </div>
+    <div>
+      <input id="username" name="username" required type="text" value="" placeholder="请输入你的姓名">
+    </div>
+    <div class="label">
+      <label>密码</label>
+    </div>
+    <div>
+      <input id="password" name="password" required type="password" value="" placeholder="请输入你的密码">
+    </div>
+  </form>
+  <form method="post" id="register">
+    <input type="hidden" name="action" value="register" />
+  </form>
+  {% for message in get_flashed_messages() %}
+  <div class="alert">
+    <span class="alert">{{ message }}</span>
+  </div>
+  {% endfor %}
+  <div class="buttonsets">
+    <button onclick="document.getElementById('login').submit();">登录</button>
+    <button class="button-right" onclick="document.getElementById('register').submit();">注册</button>
+  </div>
+</div>
+{% endblock %}

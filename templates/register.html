@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}注册 - 温州市中心医院内镜中心管理系统{% endblock %}
+
+{% block content %}
+<div class="body">
+    <h1>内镜中心管理系统<br><span>注册</span></h1>
+    <form method="POST" class="main-form" id="register">
+        <div class="label">
+            <label>姓名</label>
+        </div>
+        <div>
+            <input id="username" name="username" required type="text" value="" placeholder="请输入你的姓名">
+        </div>
+        <div class="label">
+            <label>密码</label>
+        </div>
+        <div>
+            <input id="password" name="password" required type="password" value="" placeholder="请输入你的密码">
+        </div>
+        <div class="label">
+            <label>重复密码</label>
+        </div>
+        <div>
+            <input id="password2" name="password2" required type="password" value="" placeholder="请再次输入你的密码">
+        </div>
+        <div class="label">
+            <label>邮箱</label>
+        </div>
+        <div>
+            <input id="email" name="email" required type="text" value="" placeholder="请输入你的QQ邮箱">
+        </div>
+        <div class="label">
+            <label>重复邮箱</label>
+        </div>
+        <div>
+            <input id="email2" name="email2" required type="text" value="" placeholder="请再次输入你的QQ邮箱">
+        </div>
+    </form>
+    {% for message in get_flashed_messages() %}
+    <div class="alert">
+        <span class="alert">{{ message }}</span>
+    </div>
+    {% endfor %}
+    <div class="buttonsets">
+        <button onclick="document.getElementById('register').submit();">注册</button>
+        <form method="get" id="login" action="login" hidden></form>
+        <button onclick="document.getElementById('login').submit();" class="button-right">返回</button>
+    </div>
+</div>
+{% endblock %}

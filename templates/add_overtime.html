@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}填写加班 - 温州市中心医院内镜中心管理系统{% endblock %}
+
+{% block content %}
+<h1>内镜中心管理系统<br><span>填写加班</span></h1>
+<form method="POST" class="main-form" id="main-form">
+    <div class="label">
+        <label>加班时间区间</label>
+    </div>
+    <div>
+        <input id="date1" name="date1" required type="datetime-local" class="first-datetime">
+    </div>
+    <div>
+        <input id="date2" name="date2" required type="datetime-local">
+    </div>
+    <div class="label">
+        <label>班次</label>
+    </div>
+    <div>
+        <input id="shift" name="shift" required type="text">
+    </div>
+    <div class="label">
+        <label>房间号</label>
+    </div>
+    <div>
+        <input id="room" name="room" required type="text">
+    </div>
+</form>
+{% for message in get_flashed_messages() %}
+<div class="alert">
+    <span class="alert">{{ message }}</span>
+</div>
+{% endfor %}
+<div class="buttonsets">
+    <button onclick="document.getElementById('main-form').submit();">提交</button>
+    <form method="get" id="add" action="add" hidden></form>
+    <button onclick="document.getElementById('add').submit();" class="button-right">返回</button>
+</div>
+{% endblock %}

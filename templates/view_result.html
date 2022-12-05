@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}查看结果 - 温州市中心医院内镜中心管理系统{% endblock %}
+
+{% block content %}
+{% if query_type == 'overtime' %}
+<h1>内镜中心管理系统<br><span>加班结果</span></h1>
+{% elif query_type == 'compensation' %}
+<h1>内镜中心管理系统<br><span>补休结果</span></h1>
+{% else %}
+<h1>内镜中心管理系统<br><span>核销结果</span></h1>
+{% endif %}
+<table>
+  <thead>
+    <tr>
+      <th>名字</th>
+      <th>开始时间</th>
+      <th>结束时间</th>
+      <th>总时长</th>
+      {% if query_type == 'overtime' or query_type == 'compensation' %}
+      <th>班次</th>
+      <th>房间号</th>
+      {% endif %}
+    </tr>
+    {% for item in query_result %}
+    <tr>
+      <td>{{ item['name'] }}</td>
+      <td>{{ item['start_time'] }}</td>
+      <td>{{ item['end_time'] }}</td>
+      <td>{{ "%.1f" | format(item['hours']) }}</td>
+      {% if query_type == 'overtime' or query_type == 'compensation' %}
+      <td>{{ item['shift'] }}</td>
+      <td>{{ item['room'] }}</td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </thead>
+</table>
+<div class="buttonsets">
+  <form method="get" id="view" action="view" hidden></form>
+  <button onclick="document.getElementById('view').submit();" class="button-right">返回</button>
+</div>
+{% endblock %}

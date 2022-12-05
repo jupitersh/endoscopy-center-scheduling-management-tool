@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}删除用户 - 温州市中心医院内镜中心管理系统{% endblock %}
+
+{% block content %}
+<h1>内镜中心管理系统<br><span>删除用户</span></h1>
+<table>
+    <thead>
+        <tr>
+            <th>名字</th>
+            <th>操作</th>
+        </tr>
+        {% for item in table_content %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>
+                <form id="{{ item._id }}" method="post">
+                    <input type="hidden" name="_id" value="{{ item._id }}" />
+                    <a onclick="document.getElementById('{{ item._id }}').submit();">删除</a>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </thead>
+</table>
+<div class="buttonsets">
+  <form method="get" id="user_manage" action="user_manage" hidden></form>
+  <button onclick="document.getElementById('user_manage').submit();" class="button-right">返回</button>
+</div>
+{% endblock %}

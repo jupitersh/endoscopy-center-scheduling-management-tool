@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}审核 - 温州市中心医院内镜中心管理系统{% endblock %}
+
+{% block content %}
+<h1>内镜中心管理系统<br><span>审核</span></h1>
+<table>
+    <thead>
+        <tr>
+            <th>操作</th>
+            <th>类型</th>
+            <th>名字</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>总时长</th>
+            <th>班次</th>
+            <th>房间号</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in overtime %}
+        {% set _id = item['_id'] %}
+        <tr>
+            <td>
+                <form id="{{ _id }}c" method="post">
+                    <input type="hidden" name="action" value="confirm" />
+                    <input type="hidden" name="_id" value="{{ _id }}" />
+                    <input type="hidden" name="group" value="overtime" />
+                    <a onclick="document.getElementById('{{ _id }}c').submit();">确认</a>
+                </form>
+            </td>
+            <td>加班</td>
+            <td>{{ item['name'] }}</td>
+            <td>{{ item['start_time'] }}</td>
+            <td>{{ item['end_time'] }}</td>
+            <td>{{ "%.1f" | format(item['hours']) }}</td>
+            <td>{{ item['shift'] }}</td>
+            <td>{{ item['room'] }}</td>
+            <td>
+                <form id="{{ _id }}d" method="post">
+                    <input type="hidden" name="action" value="delete" />
+                    <input type="hidden" name="_id" value="{{ _id }}" /> 
+                    <input type="hidden" name="group" value="overtime" />
+                    <a onclick="document.getElementById('{{ _id }}d').submit();">删除</a>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        {% for item in compensation %}
+        {% set _id = item['_id'] %}
+        <tr>
+            <td>
+                <form id="{{ _id }}c" method="post">
+                    <input type="hidden" name="action" value="confirm" />
+                    <input type="hidden" name="_id" value="{{ _id }}" />
+                    <input type="hidden" name="group" value="compensation" />
+                    <a onclick="document.getElementById('{{ _id }}c').submit();">确认</a>
+                </form>
+            </td>
+            <td>补休</td>
+            <td>{{ item['name'] }}</td>
+            <td>{{ item['start_time'] }}</td>
+            <td>{{ item['end_time'] }}</td>
+            <td>{{ "%.1f" | format(item['hours']) }}</td>
+            <td></td>
+            <td></td>
+            <td>
+                <form id="{{ _id }}d" method="post">
+                    <input type="hidden" name="action" value="delete" />
+                    <input type="hidden" name="_id" value="{{ _id }}" /> 
+                    <input type="hidden" name="group" value="compensation" />
+                    <a onclick="document.getElementById('{{ _id }}d').submit();">删除</a>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        {% for item in writeoff %}
+        {% set _id = item['_id'] %}
+        <tr>
+            <td>
+                <form id="{{ _id }}c" method="post">
+                    <input type="hidden" name="action" value="confirm" />
+                    <input type="hidden" name="_id" value="{{ _id }}" />
+                    <input type="hidden" name="group" value="writeoff" />
+                    <a onclick="document.getElementById('{{ _id }}c').submit();">确认</a>
+                </form>
+            </td>
+            <td>核销</td>
+            <td>{{ item['name'] }}</td>
+            <td></td>
+            <td></td>
+            <td>{{ "%.1f" | format(item['hours']) }}</td>
+            <td></td>
+            <td></td>
+            <td>
+                <form id="{{ _id }}d" method="post">
+                    <input type="hidden" name="action" value="delete" />
+                    <input type="hidden" name="_id" value="{{ _id }}" /> 
+                    <input type="hidden" name="group" value="writeoff" />
+                    <a onclick="document.getElementById('{{ _id }}d').submit();">删除</a>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="buttonsets">
+  <form method="get" id="index" action="index" hidden></form>
+  <button onclick="document.getElementById('index').submit();" class="button-right">返回</button>
+</div>
+{% endblock %}

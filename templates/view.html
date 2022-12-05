@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}查看 - 温州市中心医院内镜中心管理系统{% endblock %}
+
+{% block head %}
+<script type="text/javascript">
+    function init_date() {
+        var today = new Date();
+        var firstDate = new Date();
+        firstDate.setDate(1);
+        document.getElementById('date1').valueAsDate = firstDate;
+        document.getElementById('date2').valueAsDate = today;
+    };
+    window.onload = init_date;
+</script>
+{% endblock %}
+
+{% block content %}
+<h1>内镜中心管理系统<br><span>查看</span></h1>
+<form method="POST" class="main-form" id="main-form">
+    <div class="label">
+        <label>日期区间</label>
+    </div>
+    <div>
+        <input id="date1" name="date1" type="date" class="first-datetime">
+        <input id="date2" name="date2" type="date">
+    </div>
+
+    <div class="label">
+        <label>类型</label>
+    </div>
+    <div>
+        <select name="query_type" id="query_type">
+            <option value="overtime">加班</option>
+            <option value="compensation">补休</option>
+            <option value="writeoff">核销</option>
+        </select>
+    </div>
+    <div class="label">
+        <label>名字</label>
+    </div>
+    <div>
+        <select name="name" id="name">
+            <option value="未选择">未选择</option>
+            {% for user in users%}
+            <option value="{{ user }}">{{ user }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="label">
+        <label>真实加班时间区间</label>
+    </div>
+    <div>
+        <input id="real_overtime_hours1" name="real_overtime_hours1" type="number" class="short-input">
+        <span>~</span>
+        <input id="real_overtime_hours2" name="real_overtime_hours2" type="number" class="short-input">
+    </div>
+    <div class="label">
+        <label>补休时间区间</label>
+    </div>
+    <div>
+        <input id="compensation_hours1" name="compensation_hours1" type="number" class="short-input">
+        <span>~</span>
+        <input id="compensation_hours2" name="compensation_hours2" type="number" class="short-input">
+    </div>
+    <div class="label">
+        <label>核销时间区间</label>
+    </div>
+    <div>
+        <input id="writeoff_hours1" name="writeoff_hours1" type="number" class="short-input">
+        <span>~</span>
+        <input id="writeoff_hours2" name="writeoff_hours2" type="number" class="short-input">
+    </div>
+    <div class="label">
+        <label>时间排序</label>
+    </div>
+    <div>
+        <select name="sort_order" id="sort_order">
+            <option value="-1">降序</option>
+            <option value="1">升序</option>
+        </select>
+    </div>
+</form>
+{% for message in get_flashed_messages() %}
+<div class="alert">
+    <span class="alert">{{ message }}</span>
+</div>
+{% endfor %}
+<div class="buttonsets">
+    <button onclick="document.getElementById('main-form').submit();">提交</button>
+    <form method="get" id="index" action="index" hidden></form>
+    <button onclick="document.getElementById('index').submit();" class="button-right">返回</button>
+</div>
+{% endblock %}

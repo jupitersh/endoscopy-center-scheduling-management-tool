@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}用户管理 - 温州市中心医院内镜中心管理系统{% endblock %}
+
+{% block content %}
+<h1>内镜中心管理系统<br><span>用户管理</span></h1>
+<div class="buttonsets">
+  <form method="get" id="user_add" action="user_add" hidden></form>
+  <button onclick="document.getElementById('user_add').submit();">添加用户</button>
+  <form method="get" id="user_remove" action="user_remove" hidden></form>
+  <button class="button-right" onclick="document.getElementById('user_remove').submit();">删除用户</button>
+</div>
+<div class="buttonsets">
+  <form method="get" id="index" action="index" hidden></form>
+  <button class="button-right" onclick="document.getElementById('index').submit();">返&emsp;&emsp;回</button>
+</div>
+{% endblock %}

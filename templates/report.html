@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}统计 - 温州市中心医院内镜中心管理系统{% endblock %}
+
+{% block head %}
+<script type="text/javascript">
+    function init_date(){
+        var today = new Date();
+        var firstDate = new Date();
+        firstDate.setDate(1);
+        document.getElementById('date1').valueAsDate = firstDate;
+        document.getElementById('date2').valueAsDate = today;
+    };
+    window.onload = init_date;
+</script>
+{% endblock %}
+
+{% block content %}
+<h1>内镜中心管理系统<br><span>统计</span></h1>
+<form method="POST" class="main-form" id="main-form">
+    <div class="label">
+        <label>日期区间</label>
+    </div>
+    <div>
+        <input id="date1" name="date1" type="date" class="first-datetime">
+        <input id="date2" name="date2" type="date">
+    </div>
+    <div class="label">
+        <label>请选择要统计的项目</label>
+    </div>
+    <div>
+        <select name="query_type" id="query_type">
+            <option value="实际加班时间统计">实际加班时间统计</option>
+            <option value="调整后加班时间统计">调整后加班时间统计</option>
+            <option value="17点以后加班次数统计">17点以后加班次数</op统计tion>
+            <option value="22点以后加班次数统计">22点以后加班次数统计</option>
+            <option value="核销时间统计">核销时间统计</option>
+        </select>
+    </div>
+</form>
+{% for message in get_flashed_messages() %}
+<div class="alert">
+    <span class="alert">{{ message }}</span>
+</div>
+{% endfor %}
+<div class="buttonsets">
+    <button onclick="document.getElementById('main-form').submit();">提交</button>
+    <form method="get" id="index" action="index" hidden></form>
+    <button onclick="document.getElementById('index').submit();" class="button-right">返回</button>
+</div>
+{% endblock %}

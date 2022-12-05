@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}主页 - 温州市中心医院内镜中心管理系统{% endblock %}
+
+{% block content %}
+<div class="body">
+
+  <h1>温州市中心医院<br><span>内镜中心管理系统</span></h1>
+  <div class="buttonsets">
+    <form method="get" id="add" action="add" hidden></form>
+    <button onclick="document.getElementById('add').submit();">填写</button>
+    <form method="get" id="view" action="view" hidden></form>
+    <button class="button-right" onclick="document.getElementById('view').submit();">查看</button>
+  </div>
+  {% if permission == "admin" %}
+  <div class="buttonsets">
+    <form method="get" id="report" action="report" hidden></form>
+    <button onclick="document.getElementById('report').submit();">统计</button>
+    <form method="get" id="batch" action="batch" hidden></form>
+    <button class="button-right" onclick="document.getElementById('batch').submit();">批量</button>
+  </div>
+  <div class="buttonsets">
+    <form method="get" id="verify" action="verify" hidden></form>
+    <button onclick="document.getElementById('verify').submit();">审核</button>
+    <form method="get" id="user_manage" action="user_manage" hidden></form>
+    <button class="button-right" onclick="document.getElementById('user_manage').submit();">用户</button>
+  </div>
+  {% else %}
+  <div class="buttonsets">
+    <form method="get" id="report" action="report" hidden></form>
+    <button onclick="document.getElementById('report').submit();">统计</button>
+    <form method="get" id="user_manage" action="user_manage" hidden></form>
+    <button class="button-right" onclick="document.getElementById('user_manage').submit();">用户</button>
+  </div>
+  {% endif %}
+  <div class="buttonsets">
+    <form method="get" id="logout" action="logout" hidden></form>
+    <button class="button-right" onclick="document.getElementById('logout').submit();">登出</button>
+  </div>
+</div>
+{% endblock %}
